@@ -1,24 +1,27 @@
 import os
-import subprocess
-import sys
-from aqualab.aqualab import AquaLab
-from playwright.sync_api import sync_playwright			# Support for Microsoft PlayWright Testing Framework
+from datetime import datetime
+from playwright.sync_api import sync_playwright
+from behave.features.utils.constants import *
 
 
 def before_all(context):
-    # Mandatory import for AquaLab hook
-	context.aqualab = AquaLab(context)
-	context.aqualab.before_all(context)
- 
 	# Configure variables
 	context.TargetVersionFilePath = "./../target.version." + context.config.userdata.get("client") + "." + context.config.userdata.get("featureset") + ".tmp"
-	context.ACN_url = "https://acn.test.acrom.io"
-	context.TestUsername = "aqua-qa"
-	context.TestPassword = "test1234!!"
+	context.website_url = BASE_URL
+	context.standard_user = STANDARD_USER
+	context.locked_out_user = LOCKED_OUT_USER
+	context.problem_user = PROBLEM_USER
+	context.performance_glitch_user = PERFORMANCE_GLITCH_USER
+	context.error_user = ERROR_USER
+	context.visual_user = VISUAL_USER
+	context.password = MASTER_PASSWORD
+
+	# Global timeout for playwright
+	context.page.set_default_timeout(DEFAULT_TIMEOUT)  # 10 sec
 
 	# Opțiuni pentru browser
 	playwright_browser_options = {
-		"headless": False if os.getenv("AQUA_RUNNER_ENVIRONMENT") != "True" else True,
+		"headless": False,
 		"args": [
 			'--allow-running-insecure-content',
 			'--ignore-certificate-errors',
@@ -37,24 +40,19 @@ def before_all(context):
 	context.browser = context.playwright.chromium.launch(**playwright_browser_options)
 	context.browser = context.browser.new_context(no_viewport=True)	 # Remove any viewport restrictions to enable full-screen
 	context.page = context.browser.new_page()
-	context.page.goto(context.ACN_url)
+	context.page.goto(context.website_url)
 
 	context.request_context = context.playwright.request.new_context()
 
-	context.aqualab.register_playwright_session(context.browser, context.page)
+	print("Browser launched and navigating to:", context.website_url)
 
- 
-def before_scenario(context, scenario):
-    context.aqualab.before_scenario(context, scenario)
- 
-def before_step(context, step):
-    context.aqualab.before_step(context, step)	
- 
-def after_step(context, step):
-    context.aqualab.after_step(context, step)	
-    
-def after_scenario(context, scenario):
-	context.aqualab.after_scenario(context, scenario)
+def after_all(context, scenario):
+	if scenario.status == "failed":
+		timestamp = datetime.now().strftime("%Y%m%d_%H%M%S") # EU standard timezone
+		scenario_name = scenario.name.replace(" ", "_").replace("/", "_")
+		screenshot_dir = "reports/screenshots"
+		os.makedirs(screenshot_dir, exist_ok=True)
 
-def after_all(context):
-    context.aqualab.after_all(context)
+		path = os.path.join(screenshot_dir, f"{scenario_name}_{timestamp}.png")
+		context.page.screenshot(path=path, full_page=True)
+		print(f"Screenshot saved to: {path}")
