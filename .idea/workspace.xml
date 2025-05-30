@@ -4,11 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de0b2871-0ed3-44cd-8d84-808b01fb2b78" name="Changes" comment="" />
+    <list default="true" id="de0b2871-0ed3-44cd-8d84-808b01fb2b78" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/behave/features/pages/base_page.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/behave/features/pages/login_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/behave/features/pages/login_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/behave/features/steps/login_steps.py" beforeDir="false" afterPath="$PROJECT_DIR$/behave/features/steps/login_steps.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -20,6 +32,9 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2wSPX8lbNThEVRX8x5PCAYQlDEt" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -29,10 +44,17 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/robertnicolescu/Desktop/Personal_projects/Workspace/Python_Playwright/playwright_POM_project",
+    "last_opened_file_path": "/Users/robertnicolescu/Desktop/Personal_projects/Workspace/Python_Playwright/playwright_POM_project/behave/features",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/behave/features" />
+      <recent name="$PROJECT_DIR$/behave/features/utils" />
+      <recent name="$PROJECT_DIR$/behave/features/steps" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
